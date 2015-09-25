@@ -27,11 +27,13 @@ class Database extends Controller {
     DB.withConnection { conn =>
       val stmt = conn.createStatement
       val rs = stmt.executeQuery("SELECT 'DB IS ALIVE' AS COL")
-      while (rs.next()) {
-        outstring += rs.getString("COL")
-      }
+      val outstream = new Iterator[String] {
+        def hasNext = rs.next()
+        def next() = rs.getString(1)
+      }.toStream
+      Ok(outstream.mkString)
     }
-    Ok(outstring)
+    
   }
 
 }
