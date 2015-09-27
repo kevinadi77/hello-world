@@ -4,6 +4,30 @@
 		"selected_items":
 		[
 			[
+				"conten",
+				"contentType"
+			],
+			[
+				"n",
+				"newdiv"
+			],
+			[
+				"dvi",
+				"divid"
+			],
+			[
+				"crea",
+				"createTextNode"
+			],
+			[
+				"res",
+				"responseText"
+			],
+			[
+				"msg",
+				"msgnode"
+			],
+			[
 				"get",
 				"getElementById"
 			],
@@ -132,18 +156,10 @@
 	"buffers":
 	[
 		{
-			"file": "app/controllers/Fixed.scala",
-			"settings":
-			{
-				"buffer_size": 398,
-				"line_ending": "Windows"
-			}
-		},
-		{
 			"file": "app/controllers/Application.scala",
 			"settings":
 			{
-				"buffer_size": 708,
+				"buffer_size": 556,
 				"line_ending": "Unix"
 			}
 		},
@@ -151,24 +167,23 @@
 			"file": "app/views/index.scala.html",
 			"settings":
 			{
-				"buffer_size": 1235,
+				"buffer_size": 835,
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"file": "app/views/div.scala.html",
+			"file": "public/javascripts/main.js",
 			"settings":
 			{
-				"buffer_size": 39,
-				"line_ending": "Windows",
-				"name": "@(message: String)"
+				"buffer_size": 949,
+				"line_ending": "Unix"
 			}
 		},
 		{
 			"file": "app/views/main.scala.html",
 			"settings":
 			{
-				"buffer_size": 481,
+				"buffer_size": 584,
 				"line_ending": "Unix"
 			}
 		},
@@ -176,7 +191,39 @@
 			"file": "conf/routes",
 			"settings":
 			{
-				"buffer_size": 558,
+				"buffer_size": 693,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "build.sbt",
+			"settings":
+			{
+				"buffer_size": 548,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "conf/application.conf",
+			"settings":
+			{
+				"buffer_size": 1475,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "test/ApplicationSpec.scala",
+			"settings":
+			{
+				"buffer_size": 1737,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "app/controllers/Database.scala",
+			"settings":
+			{
+				"buffer_size": 1314,
 				"line_ending": "Unix"
 			}
 		}
@@ -189,9 +236,17 @@
 	"command_palette":
 	{
 		"height": 392.0,
-		"last_filter": "rein",
+		"last_filter": "inst",
 		"selected_items":
 		[
+			[
+				"inst",
+				"Package Control: Install Package"
+			],
+			[
+				"instl",
+				"Package Control: Install Package"
+			],
 			[
 				"rein",
 				"Indentation: Reindent Lines"
@@ -207,10 +262,6 @@
 			[
 				"ensime",
 				"Ensime: Startup"
-			],
-			[
-				"inst",
-				"Package Control: Install Package"
 			],
 			[
 				"sql",
@@ -281,7 +332,7 @@
 				"CSV: Justify columns"
 			]
 		],
-		"width": 536.0
+		"width": 602.0
 	},
 	"console":
 	{
@@ -301,12 +352,29 @@
 	},
 	"expanded_folders":
 	[
-		"/C/Users/Kevin/Development/play/play-scala-first",
-		"/C/Users/Kevin/Development/play/play-scala-first/app",
-		"/C/Users/Kevin/Development/play/play-scala-first/app/views"
+		"/Users/kevinadi/Development/GitHub/hello-world/play-scala-first",
+		"/Users/kevinadi/Development/GitHub/hello-world/play-scala-first/app",
+		"/Users/kevinadi/Development/GitHub/hello-world/play-scala-first/app/assets",
+		"/Users/kevinadi/Development/GitHub/hello-world/play-scala-first/app/assets/javascripts",
+		"/Users/kevinadi/Development/GitHub/hello-world/play-scala-first/app/controllers",
+		"/Users/kevinadi/Development/GitHub/hello-world/play-scala-first/app/views",
+		"/Users/kevinadi/Development/GitHub/hello-world/play-scala-first/conf",
+		"/Users/kevinadi/Development/GitHub/hello-world/play-scala-first/project/project/target",
+		"/Users/kevinadi/Development/GitHub/hello-world/play-scala-first/public",
+		"/Users/kevinadi/Development/GitHub/hello-world/play-scala-first/public/javascripts",
+		"/Users/kevinadi/Development/GitHub/hello-world/play-scala-first/target/web",
+		"/Users/kevinadi/Development/GitHub/hello-world/play-scala-first/target/web/coffeescript",
+		"/Users/kevinadi/Development/GitHub/hello-world/play-scala-first/target/web/coffeescript/main",
+		"/Users/kevinadi/Development/GitHub/hello-world/play-scala-first/target/web/coffeescript/main/javascripts",
+		"/Users/kevinadi/Development/GitHub/hello-world/play-scala-first/test"
 	],
 	"file_history":
 	[
+		"/Users/kevinadi/Development/GitHub/hello-world/play-scala-first/build.sbt",
+		"/Users/kevinadi/Development/GitHub/hello-world/play-scala-first/app/assets/javascripts/main_.coffee",
+		"/Users/kevinadi/Development/GitHub/hello-world/play-scala-first/project/plugins.sbt",
+		"/Users/kevinadi/Development/GitHub/hello-world/play-scala-first/app/views/div.scala.html",
+		"/Users/kevinadi/Development/GitHub/hello-world/play-scala-first/app/controllers/Fixed.scala",
 		"/C/Users/Kevin/Development/play/play-scala-first/build.sbt",
 		"/C/Users/Kevin/Development/play/play-scala/conf/application.conf",
 		"/C/Users/Kevin/.sbt/0.13/plugins/plugins.sbt",
@@ -429,12 +497,7 @@
 		"//Tiffany/e$/ADAPTV11-INST19/ADAPTV11-JBOSS/BusinessObjects/MasterADomainV7/kevin_AU_EmailCandReference_Check.log",
 		"//Tiffany/e$/ADAPTV11-INST19/ADAPTV11-JBOSS/BusinessObjects/MasterADomainV7/kevin_US_PresentClientOnLoad.log",
 		"//Tiffany/e$/ADAPTV11-INST19/ADAPTV11-JBOSS/BusinessObjects/MasterADomainV7/kevin_US_PresenttoClient_EmailConfirm.log",
-		"//Tiffany/e$/ADAPTV11-INST19/ADAPTV11-JBOSS/BusinessObjects/MasterADomainV7/kevin_US_PresenttoClientOnConfirm.log",
-		"//Tiffany/e$/ADAPTV11-INST19/ADAPTV11-JBOSS/BusinessObjects/MasterADomainV7/kevin_RejectCandFromJobOnConfirm.log",
-		"//Tiffany/e$/ADAPTV11-INST19/ADAPTV11-JBOSS/BusinessObjects/MasterADomainV7/kevin_CheckCandforRejection.log",
-		"//Tiffany/e$/ADAPTV11-INST19/ADAPTV11-JBOSS/BusinessObjects/MasterADomainV7/kevin_AU_GetUserOffice.log",
-		"//Tiffany/e$/ADAPTV11-INST19/ADAPTV11-JBOSS/BusinessObjects/MasterADomainV7/kevin_AU_CreateOtherInv_OnLoad.log",
-		"//Tiffany/e$/ADAPTV11-INST19/ADAPTV11-JBOSS/BusinessObjects/MasterADomainV7/kevin_FillDirectJobValidation.log"
+		"//Tiffany/e$/ADAPTV11-INST19/ADAPTV11-JBOSS/BusinessObjects/MasterADomainV7/kevin_US_PresenttoClientOnConfirm.log"
 	],
 	"find":
 	{
@@ -467,6 +530,7 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"newdiv",
 			"Application",
 			"\"",
 			".sql]",
@@ -593,8 +657,7 @@
 			"help",
 			"8997778",
 			" +$",
-			"printfretboard",
-			"scaleintvl"
+			"printfretboard"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -626,29 +689,90 @@
 	"groups":
 	[
 		{
-			"selected": 2,
+			"selected": 6,
 			"sheets":
 			[
 				{
 					"buffer": 0,
-					"file": "app/controllers/Fixed.scala",
+					"file": "app/controllers/Application.scala",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 398,
+						"buffer_size": 556,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								368,
-								368
+								442,
+								442
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/Scala/Scala.tmLanguage"
+							"BracketHighlighterBusy": false,
+							"bh_regions":
+							[
+								"bh_round",
+								"bh_round_center",
+								"bh_round_open",
+								"bh_round_close",
+								"bh_round_content",
+								"bh_angle",
+								"bh_angle_center",
+								"bh_angle_open",
+								"bh_angle_close",
+								"bh_angle_content",
+								"bh_unmatched",
+								"bh_unmatched_center",
+								"bh_unmatched_open",
+								"bh_unmatched_close",
+								"bh_unmatched_content",
+								"bh_default",
+								"bh_default_center",
+								"bh_default_open",
+								"bh_default_close",
+								"bh_default_content",
+								"bh_c_define",
+								"bh_c_define_center",
+								"bh_c_define_open",
+								"bh_c_define_close",
+								"bh_c_define_content",
+								"bh_regex",
+								"bh_regex_center",
+								"bh_regex_open",
+								"bh_regex_close",
+								"bh_regex_content",
+								"bh_single_quote",
+								"bh_single_quote_center",
+								"bh_single_quote_open",
+								"bh_single_quote_close",
+								"bh_single_quote_content",
+								"bh_curly",
+								"bh_curly_center",
+								"bh_curly_open",
+								"bh_curly_close",
+								"bh_curly_content",
+								"bh_square",
+								"bh_square_center",
+								"bh_square_open",
+								"bh_square_close",
+								"bh_square_content",
+								"bh_double_quote",
+								"bh_double_quote_center",
+								"bh_double_quote_open",
+								"bh_double_quote_close",
+								"bh_double_quote_content",
+								"bh_tag",
+								"bh_tag_center",
+								"bh_tag_open",
+								"bh_tag_close",
+								"bh_tag_content"
+							],
+							"syntax": "Packages/Scala/Scala.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
@@ -659,25 +783,435 @@
 				},
 				{
 					"buffer": 1,
-					"file": "app/controllers/Application.scala",
+					"file": "app/views/index.scala.html",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 708,
+						"buffer_size": 835,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								557,
-								557
+								590,
+								590
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/Scala/Scala.tmLanguage",
-							"tab_size": 2
+							"BracketHighlighterBusy": false,
+							"bh_regions":
+							[
+								"bh_round",
+								"bh_round_center",
+								"bh_round_open",
+								"bh_round_close",
+								"bh_round_content",
+								"bh_angle",
+								"bh_angle_center",
+								"bh_angle_open",
+								"bh_angle_close",
+								"bh_angle_content",
+								"bh_unmatched",
+								"bh_unmatched_center",
+								"bh_unmatched_open",
+								"bh_unmatched_close",
+								"bh_unmatched_content",
+								"bh_default",
+								"bh_default_center",
+								"bh_default_open",
+								"bh_default_close",
+								"bh_default_content",
+								"bh_c_define",
+								"bh_c_define_center",
+								"bh_c_define_open",
+								"bh_c_define_close",
+								"bh_c_define_content",
+								"bh_regex",
+								"bh_regex_center",
+								"bh_regex_open",
+								"bh_regex_close",
+								"bh_regex_content",
+								"bh_single_quote",
+								"bh_single_quote_center",
+								"bh_single_quote_open",
+								"bh_single_quote_close",
+								"bh_single_quote_content",
+								"bh_curly",
+								"bh_curly_center",
+								"bh_curly_open",
+								"bh_curly_close",
+								"bh_curly_content",
+								"bh_square",
+								"bh_square_center",
+								"bh_square_open",
+								"bh_square_close",
+								"bh_square_content",
+								"bh_double_quote",
+								"bh_double_quote_center",
+								"bh_double_quote_open",
+								"bh_double_quote_close",
+								"bh_double_quote_content",
+								"bh_tag",
+								"bh_tag_center",
+								"bh_tag_open",
+								"bh_tag_close",
+								"bh_tag_content"
+							],
+							"syntax": "Packages/Play 2.0/Play-Scala-Template.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 6,
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "public/javascripts/main.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 949,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								947,
+								947
+							]
+						],
+						"settings":
+						{
+							"BracketHighlighterBusy": false,
+							"bh_regions":
+							[
+								"bh_round",
+								"bh_round_center",
+								"bh_round_open",
+								"bh_round_close",
+								"bh_round_content",
+								"bh_angle",
+								"bh_angle_center",
+								"bh_angle_open",
+								"bh_angle_close",
+								"bh_angle_content",
+								"bh_unmatched",
+								"bh_unmatched_center",
+								"bh_unmatched_open",
+								"bh_unmatched_close",
+								"bh_unmatched_content",
+								"bh_default",
+								"bh_default_center",
+								"bh_default_open",
+								"bh_default_close",
+								"bh_default_content",
+								"bh_c_define",
+								"bh_c_define_center",
+								"bh_c_define_open",
+								"bh_c_define_close",
+								"bh_c_define_content",
+								"bh_regex",
+								"bh_regex_center",
+								"bh_regex_open",
+								"bh_regex_close",
+								"bh_regex_content",
+								"bh_single_quote",
+								"bh_single_quote_center",
+								"bh_single_quote_open",
+								"bh_single_quote_close",
+								"bh_single_quote_content",
+								"bh_curly",
+								"bh_curly_center",
+								"bh_curly_open",
+								"bh_curly_close",
+								"bh_curly_content",
+								"bh_square",
+								"bh_square_center",
+								"bh_square_open",
+								"bh_square_close",
+								"bh_square_content",
+								"bh_double_quote",
+								"bh_double_quote_center",
+								"bh_double_quote_open",
+								"bh_double_quote_close",
+								"bh_double_quote_content",
+								"bh_tag",
+								"bh_tag_center",
+								"bh_tag_open",
+								"bh_tag_close",
+								"bh_tag_content"
+							],
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 7,
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "app/views/main.scala.html",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 584,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								485,
+								485
+							]
+						],
+						"settings":
+						{
+							"BracketHighlighterBusy": false,
+							"bh_regions":
+							[
+								"bh_round",
+								"bh_round_center",
+								"bh_round_open",
+								"bh_round_close",
+								"bh_round_content",
+								"bh_angle",
+								"bh_angle_center",
+								"bh_angle_open",
+								"bh_angle_close",
+								"bh_angle_content",
+								"bh_unmatched",
+								"bh_unmatched_center",
+								"bh_unmatched_open",
+								"bh_unmatched_close",
+								"bh_unmatched_content",
+								"bh_default",
+								"bh_default_center",
+								"bh_default_open",
+								"bh_default_close",
+								"bh_default_content",
+								"bh_c_define",
+								"bh_c_define_center",
+								"bh_c_define_open",
+								"bh_c_define_close",
+								"bh_c_define_content",
+								"bh_regex",
+								"bh_regex_center",
+								"bh_regex_open",
+								"bh_regex_close",
+								"bh_regex_content",
+								"bh_single_quote",
+								"bh_single_quote_center",
+								"bh_single_quote_open",
+								"bh_single_quote_close",
+								"bh_single_quote_content",
+								"bh_curly",
+								"bh_curly_center",
+								"bh_curly_open",
+								"bh_curly_close",
+								"bh_curly_content",
+								"bh_square",
+								"bh_square_center",
+								"bh_square_open",
+								"bh_square_close",
+								"bh_square_content",
+								"bh_double_quote",
+								"bh_double_quote_center",
+								"bh_double_quote_open",
+								"bh_double_quote_close",
+								"bh_double_quote_content",
+								"bh_tag",
+								"bh_tag_center",
+								"bh_tag_open",
+								"bh_tag_close",
+								"bh_tag_content"
+							],
+							"syntax": "Packages/Play 2.0/Play-Scala-Template.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 8,
+					"type": "text"
+				},
+				{
+					"buffer": 4,
+					"file": "conf/routes",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 693,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								478,
+								478
+							]
+						],
+						"settings":
+						{
+							"BracketHighlighterBusy": false,
+							"bh_regions":
+							[
+								"bh_round",
+								"bh_round_center",
+								"bh_round_open",
+								"bh_round_close",
+								"bh_round_content",
+								"bh_angle",
+								"bh_angle_center",
+								"bh_angle_open",
+								"bh_angle_close",
+								"bh_angle_content",
+								"bh_unmatched",
+								"bh_unmatched_center",
+								"bh_unmatched_open",
+								"bh_unmatched_close",
+								"bh_unmatched_content",
+								"bh_default",
+								"bh_default_center",
+								"bh_default_open",
+								"bh_default_close",
+								"bh_default_content",
+								"bh_c_define",
+								"bh_c_define_center",
+								"bh_c_define_open",
+								"bh_c_define_close",
+								"bh_c_define_content",
+								"bh_regex",
+								"bh_regex_center",
+								"bh_regex_open",
+								"bh_regex_close",
+								"bh_regex_content",
+								"bh_single_quote",
+								"bh_single_quote_center",
+								"bh_single_quote_open",
+								"bh_single_quote_close",
+								"bh_single_quote_content",
+								"bh_curly",
+								"bh_curly_center",
+								"bh_curly_open",
+								"bh_curly_close",
+								"bh_curly_content",
+								"bh_square",
+								"bh_square_center",
+								"bh_square_open",
+								"bh_square_close",
+								"bh_square_content",
+								"bh_double_quote",
+								"bh_double_quote_center",
+								"bh_double_quote_open",
+								"bh_double_quote_close",
+								"bh_double_quote_content",
+								"bh_tag",
+								"bh_tag_center",
+								"bh_tag_open",
+								"bh_tag_close",
+								"bh_tag_content"
+							],
+							"syntax": "Packages/Play 2.0/Play-Routes.tmLanguage",
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 4,
+					"type": "text"
+				},
+				{
+					"buffer": 5,
+					"file": "build.sbt",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 548,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								263,
+								263
+							]
+						],
+						"settings":
+						{
+							"BracketHighlighterBusy": false,
+							"bh_regions":
+							[
+								"bh_round",
+								"bh_round_center",
+								"bh_round_open",
+								"bh_round_close",
+								"bh_round_content",
+								"bh_angle",
+								"bh_angle_center",
+								"bh_angle_open",
+								"bh_angle_close",
+								"bh_angle_content",
+								"bh_unmatched",
+								"bh_unmatched_center",
+								"bh_unmatched_open",
+								"bh_unmatched_close",
+								"bh_unmatched_content",
+								"bh_default",
+								"bh_default_center",
+								"bh_default_open",
+								"bh_default_close",
+								"bh_default_content",
+								"bh_c_define",
+								"bh_c_define_center",
+								"bh_c_define_open",
+								"bh_c_define_close",
+								"bh_c_define_content",
+								"bh_regex",
+								"bh_regex_center",
+								"bh_regex_open",
+								"bh_regex_close",
+								"bh_regex_content",
+								"bh_single_quote",
+								"bh_single_quote_center",
+								"bh_single_quote_open",
+								"bh_single_quote_close",
+								"bh_single_quote_content",
+								"bh_curly",
+								"bh_curly_center",
+								"bh_curly_open",
+								"bh_curly_close",
+								"bh_curly_content",
+								"bh_square",
+								"bh_square_center",
+								"bh_square_open",
+								"bh_square_close",
+								"bh_square_content",
+								"bh_double_quote",
+								"bh_double_quote_center",
+								"bh_double_quote_open",
+								"bh_double_quote_close",
+								"bh_double_quote_content",
+								"bh_tag",
+								"bh_tag_center",
+								"bh_tag_open",
+								"bh_tag_close",
+								"bh_tag_content"
+							],
+							"syntax": "Packages/Text/Plain text.tmLanguage"
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
@@ -687,25 +1221,84 @@
 					"type": "text"
 				},
 				{
-					"buffer": 2,
-					"file": "app/views/index.scala.html",
+					"buffer": 6,
+					"file": "conf/application.conf",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 1235,
+						"buffer_size": 1475,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								331,
-								331
+								1057,
+								1057
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/Play 2.0/Play-Scala-Template.tmLanguage"
+							"BracketHighlighterBusy": false,
+							"bh_regions":
+							[
+								"bh_round",
+								"bh_round_center",
+								"bh_round_open",
+								"bh_round_close",
+								"bh_round_content",
+								"bh_angle",
+								"bh_angle_center",
+								"bh_angle_open",
+								"bh_angle_close",
+								"bh_angle_content",
+								"bh_unmatched",
+								"bh_unmatched_center",
+								"bh_unmatched_open",
+								"bh_unmatched_close",
+								"bh_unmatched_content",
+								"bh_default",
+								"bh_default_center",
+								"bh_default_open",
+								"bh_default_close",
+								"bh_default_content",
+								"bh_c_define",
+								"bh_c_define_center",
+								"bh_c_define_open",
+								"bh_c_define_close",
+								"bh_c_define_content",
+								"bh_regex",
+								"bh_regex_center",
+								"bh_regex_open",
+								"bh_regex_close",
+								"bh_regex_content",
+								"bh_single_quote",
+								"bh_single_quote_center",
+								"bh_single_quote_open",
+								"bh_single_quote_close",
+								"bh_single_quote_content",
+								"bh_curly",
+								"bh_curly_center",
+								"bh_curly_open",
+								"bh_curly_close",
+								"bh_curly_content",
+								"bh_square",
+								"bh_square_center",
+								"bh_square_open",
+								"bh_square_close",
+								"bh_square_content",
+								"bh_double_quote",
+								"bh_double_quote_center",
+								"bh_double_quote_open",
+								"bh_double_quote_close",
+								"bh_double_quote_content",
+								"bh_tag",
+								"bh_tag_center",
+								"bh_tag_open",
+								"bh_tag_close",
+								"bh_tag_content"
+							],
+							"syntax": "Packages/Play 2.0/configuration.tmLanguage"
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
@@ -715,89 +1308,181 @@
 					"type": "text"
 				},
 				{
-					"buffer": 3,
-					"file": "app/views/div.scala.html",
+					"buffer": 7,
+					"file": "test/ApplicationSpec.scala",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 39,
+						"buffer_size": 1737,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								39,
-								39
+								1641,
+								1641
 							]
 						],
 						"settings":
 						{
-							"auto_name": "@(message: String)",
-							"syntax": "Packages/Play 2.0/Play-Scala-Template.tmLanguage"
+							"BracketHighlighterBusy": false,
+							"bh_regions":
+							[
+								"bh_round",
+								"bh_round_center",
+								"bh_round_open",
+								"bh_round_close",
+								"bh_round_content",
+								"bh_angle",
+								"bh_angle_center",
+								"bh_angle_open",
+								"bh_angle_close",
+								"bh_angle_content",
+								"bh_unmatched",
+								"bh_unmatched_center",
+								"bh_unmatched_open",
+								"bh_unmatched_close",
+								"bh_unmatched_content",
+								"bh_default",
+								"bh_default_center",
+								"bh_default_open",
+								"bh_default_close",
+								"bh_default_content",
+								"bh_c_define",
+								"bh_c_define_center",
+								"bh_c_define_open",
+								"bh_c_define_close",
+								"bh_c_define_content",
+								"bh_regex",
+								"bh_regex_center",
+								"bh_regex_open",
+								"bh_regex_close",
+								"bh_regex_content",
+								"bh_single_quote",
+								"bh_single_quote_center",
+								"bh_single_quote_open",
+								"bh_single_quote_close",
+								"bh_single_quote_content",
+								"bh_curly",
+								"bh_curly_center",
+								"bh_curly_open",
+								"bh_curly_close",
+								"bh_curly_content",
+								"bh_square",
+								"bh_square_center",
+								"bh_square_open",
+								"bh_square_close",
+								"bh_square_content",
+								"bh_double_quote",
+								"bh_double_quote_center",
+								"bh_double_quote_open",
+								"bh_double_quote_close",
+								"bh_double_quote_content",
+								"bh_tag",
+								"bh_tag_center",
+								"bh_tag_open",
+								"bh_tag_close",
+								"bh_tag_content"
+							],
+							"syntax": "Packages/Scala/Scala.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 0.0,
+						"translation.y": 139.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 2,
 					"type": "text"
 				},
 				{
-					"buffer": 4,
-					"file": "app/views/main.scala.html",
+					"buffer": 8,
+					"file": "app/controllers/Database.scala",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 481,
+						"buffer_size": 1314,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								0,
-								0
+								1019,
+								1019
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/Play 2.0/Play-Scala-Template.tmLanguage"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 3,
-					"type": "text"
-				},
-				{
-					"buffer": 5,
-					"file": "conf/routes",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 558,
-						"regions":
-						{
-						},
-						"selection":
-						[
+							"BracketHighlighterBusy": false,
+							"bh_regions":
 							[
-								558,
-								558
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Play 2.0/Play-Routes.tmLanguage",
+								"bh_round",
+								"bh_round_center",
+								"bh_round_open",
+								"bh_round_close",
+								"bh_round_content",
+								"bh_angle",
+								"bh_angle_center",
+								"bh_angle_open",
+								"bh_angle_close",
+								"bh_angle_content",
+								"bh_unmatched",
+								"bh_unmatched_center",
+								"bh_unmatched_open",
+								"bh_unmatched_close",
+								"bh_unmatched_content",
+								"bh_default",
+								"bh_default_center",
+								"bh_default_open",
+								"bh_default_close",
+								"bh_default_content",
+								"bh_c_define",
+								"bh_c_define_center",
+								"bh_c_define_open",
+								"bh_c_define_close",
+								"bh_c_define_content",
+								"bh_regex",
+								"bh_regex_center",
+								"bh_regex_open",
+								"bh_regex_close",
+								"bh_regex_content",
+								"bh_single_quote",
+								"bh_single_quote_center",
+								"bh_single_quote_open",
+								"bh_single_quote_close",
+								"bh_single_quote_content",
+								"bh_curly",
+								"bh_curly_center",
+								"bh_curly_open",
+								"bh_curly_close",
+								"bh_curly_content",
+								"bh_square",
+								"bh_square_center",
+								"bh_square_open",
+								"bh_square_close",
+								"bh_square_content",
+								"bh_double_quote",
+								"bh_double_quote_center",
+								"bh_double_quote_open",
+								"bh_double_quote_close",
+								"bh_double_quote_content",
+								"bh_tag",
+								"bh_tag_center",
+								"bh_tag_open",
+								"bh_tag_close",
+								"bh_tag_content"
+							],
+							"syntax": "Packages/Scala/Scala.tmLanguage",
+							"tab_size": 2,
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 0.0,
+						"translation.y": 205.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 4,
+					"stack_index": 3,
 					"type": "text"
 				}
 			]
@@ -809,7 +1494,7 @@
 	},
 	"input":
 	{
-		"height": 0.0
+		"height": 31.0
 	},
 	"layout":
 	{

@@ -8,6 +8,7 @@ GET     /newpage                    controllers.Application.newpage
 GET     /fixedmessage               controllers.TestApp.fixedmessage
 GET     /div                        controllers.Application.div(msg: Option[String])
 GET     /db                         controllers.Database.indexautoclose
+GET     /sudoku                     controllers.Database.sudoku
 
 # Map static resources from the /public folder to the /assets URL path
 GET     /assets/*file               controllers.Assets.versioned(path="/public", file: Asset)

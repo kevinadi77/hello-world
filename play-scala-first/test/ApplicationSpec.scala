@@ -21,10 +21,30 @@ class ApplicationSpec extends Specification {
 
     "render the index page" in new WithApplication{
       val home = route(FakeRequest(GET, "/")).get
-
       status(home) must equalTo(OK)
       contentType(home) must beSome.which(_ == "text/html")
       contentAsString(home) must contain ("Your new application is ready.")
+    }
+
+    "create new div with default content using REST" in new WithApplication {
+      val newdiv = route(FakeRequest(GET,"/div")).get
+      status(newdiv) must equalTo(OK)
+      contentType(newdiv) must beSome.which(_ == "text/html")
+      contentAsString(newdiv) must contain ("div default message")
+    }
+
+    "create new div with specific message using REST" in new WithApplication {
+      val newdiv = route(FakeRequest(GET,"/div?msg=specificmessage")).get
+      status(newdiv) must equalTo(OK)
+      contentType(newdiv) must beSome.which(_ == "text/html")
+      contentAsString(newdiv) must contain ("specificmessage")
+    }
+
+    "output test database value using REST" in new WithApplication {
+      val dbpage = route(FakeRequest(GET,"/db")).get
+      status(dbpage) must equalTo(OK)
+      contentType(dbpage) must beSome.which(_ == "text/plain")
+      contentAsString(dbpage) must contain ("DB IS ALIVE")
     }
   }
 }

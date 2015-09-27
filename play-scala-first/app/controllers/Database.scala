@@ -23,7 +23,6 @@ class Database extends Controller {
   }
 
   def indexautoclose = Action {
-    var outstring = ""
     DB.withConnection { conn =>
       val stmt = conn.createStatement
       val rs = stmt.executeQuery("SELECT 'DB IS ALIVE' AS COL")
@@ -32,8 +31,26 @@ class Database extends Controller {
         def next() = rs.getString(1)
       }.toStream
       Ok(outstream.mkString)
-    }
-    
+    } 
+  }
+
+  def sudoku = Action {
+    val querystr = """
+    WITH 
+    input(sud) AS (
+       VALUES('53..7....6..195....98....6.8...6...34..8.3..17...2...6.6....28....419..5....8..79') --Medium
+    )
+    select * from input;
+    """
+    DB.withConnection { conn =>
+      val stmt = conn.createStatement
+      val rs = stmt.executeQuery(querystr)
+      val outstream = new Iterator[String] {
+        def hasNext = rs.next()
+        def next() = rs.getString(1)
+      }.toStream
+      Ok(outstream.mkString)
+    } 
   }
 
 }

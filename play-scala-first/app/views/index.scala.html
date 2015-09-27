@@ -1,32 +1,6 @@
 @(message: String)
 
-@main("New page") {
-
-<script>
-function newdiv(divid) {
-    var node = document.createElement("DIV");
-    var text = document.createTextNode("in div");
-    node.appendChild(text);
-    document.getElementById(divid).appendChild(node);
-}
-
-function newdivrest(divid, msg) {
-    var msgnode = document.getElementById(msg);
-    var divs = document.getElementById(divid);
-    var xhr = new XMLHttpRequest();
-    msgnode.value == "" ? restpath = "/div" : restpath = "/div?msg=" + msgnode.value;
-    xhr.open("GET",restpath,true);
-    xhr.send();
-    xhr.onload = function() { divs.innerHTML += this.responseText };
-}
-
-function emptydiv(divid) {
-    var divs = document.getElementById(divid);
-    while (divs.firstChild) {
-        divs.removeChild(divs.firstChild);
-    }
-}
-</script>
+@main("play-scala-first") {
 
 <h3>@message</h3>
 
@@ -45,9 +19,13 @@ incrementstate: @controllers.Counter.incrementstate
 <button id="newdiv" onclick="javascript:newdiv('divs')">Click</button>
 <button id="newdiv" onclick="javascript:newdivrest('divs','msg')">Click Rest</button>
 <input type="text" id="msg">
-<button id="emptydiv" onclick="javascript:emptydiv('divs')">Empty</button>
-
+<button id="emptydiv" onclick="javascript:emptydiv('divs')">Clear</button>
 <div id="divs"></div>
+
+
+<button id="execsql" onclick="javascript:execsql('sql')">Exec SQL</button>
+<button id="clearsql" onclick="javascript:emptydiv('sql')">Clear SQL</button>
+<div id="sql"></div>
 
 
 <!--@play20.welcome(message)-->
