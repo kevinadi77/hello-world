@@ -25,7 +25,7 @@ class Database extends Controller {
   def indexautoclose = Action {
     DB.withConnection { conn =>
       val stmt = conn.createStatement
-      val rs = stmt.executeQuery("SELECT 'DB IS ALIVE' AS COL")
+      val rs = stmt.executeQuery("SELECT 'DB IS ALIVE AT ' || NOW() AS COL")
       val outstream = new Iterator[String] {
         def hasNext = rs.next()
         def next() = rs.getString(1)
