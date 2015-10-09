@@ -31,5 +31,5 @@ function execsql(divid) {
 	var xhr = new XMLHttpRequest();
 	xhr.open("GET","/db",true);
 	xhr.send();
-	xhr.onload = function() { div.innerHTML = this.responseText };
+	xhr.onload = function() { div.innerHTML = "<pre>" + this.responseText + "</pre>" };
 }
