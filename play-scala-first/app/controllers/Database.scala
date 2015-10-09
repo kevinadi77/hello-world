@@ -44,7 +44,7 @@ class Database extends Controller {
   DB.withConnection { implicit conn =>
     val createTable = SQL(
       """
-      DROP TABLE TEST;
+      DROP TABLE IF EXISTS TEST;
       CREATE TABLE TEST (KEY TEXT, VALUE TEXT)
       """
     ).execute()
