@@ -50,12 +50,19 @@ class ApplicationSpec extends Specification {
     }
 
     "select a specific key using REST" in new WithApplication {
-      val dbpage = route(FakeRequest(GET,"/db")).get
+      val dbpage = route(FakeRequest(GET,"/db?key=key7")).get
       status(dbpage) must equalTo(OK)
       contentType(dbpage) must beSome.which(_ == "text/plain")
       contentAsString(dbpage) must contain ("List(Blah(key7,val7,desc7))")
       contentAsString(dbpage) must not contain ("List(Blah(key7,val8,desc8))")
       contentAsString(dbpage) must contain ("""[{"key":"key7","value":"val7","desc":"desc7"}]""")
+    }
+
+    "update a specific key" in new WithApplication {
+      val dbpage = route(FakeRequest(GET,"/db?key=key7")).get
+      status(dbpage) must equalTo(OK)
+      contentType(dbpage) must beSome.which(_ == "text/plain")
+      contentAsString(dbpage) must contain ("Blah(key7,valnew,descnew)")
     }
   }
 }

@@ -39,7 +39,7 @@ object Blah {
   /*
   Get all Blah from the database, returns Blah array
   */
-  def findAll(): Seq[Blah] = {
+  def findAll(): List[Blah] = {
     DB.withConnection { implicit conn =>
       SQL(
         """
@@ -54,7 +54,7 @@ object Blah {
   /*
   Get some Blah with a specific key
   */
-  def find(key:String): Seq[Blah] = {
+  def find(key:String): List[Blah] = {
     DB.withConnection { implicit conn =>
       SQL(
         """
@@ -83,6 +83,28 @@ object Blah {
       SQL(
         """
         INSERT INTO DESC (KEY,DESC) VALUES ({key},{desc})
+        """
+      ).on('key -> blah.key, 'desc -> blah.desc)
+       .executeUpdate()
+    }
+  }
+
+  /*
+  Update existing Blah
+  */
+  def update(blah: Blah): Unit = {
+    DB.withTransaction { implicit conn =>
+
+      SQL(
+        """
+        UPDATE TEST SET VALUE = {value} WHERE KEY = {key}
+        """
+      ).on('key -> blah.key, 'value -> blah.value)
+       .executeUpdate()
+
+      SQL(
+        """
+        UPDATE DESC SET DESC = {desc} WHERE KEY = {key}
         """
       ).on('key -> blah.key, 'desc -> blah.desc)
        .executeUpdate()
@@ -184,7 +206,8 @@ class Database extends Controller {
   /*
   Using Anorm
   */
-  def indexAnorm = Action {
+  def indexAnorm(key: String) = Action {
+
     val allBlah = Blah.findAll()
     val allBlahJson = Json.toJson(allBlah)
 
@@ -213,8 +236,8 @@ class Database extends Controller {
       + "\n# SELECT * result as Json:\n"
       + Json.prettyPrint(allBlahJson) + "\n"
 
-      + "\n# From Json back into Seq[Blah]:\n"
-      + allBlahJson.asOpt[Seq[Blah]] + "\n"
+      + "\n# From Json back into List[Blah]:\n"
+      + allBlahJson.asOpt[List[Blah]] + "\n"
 
       + "\n# Corrupt Json:\n"
       + "Json      : " + corruptJson + "\n"
@@ -225,11 +248,16 @@ class Database extends Controller {
       + "Head opt  : " + corruptJson.head.asOpt[Blah] + "\n"
       + "Tail opt  : " + corruptJson.tail.asOpt[List[Blah]] + "\n"
 
-      + "\n# Find a specific key:\n"
-      + "Some key Anorm       : " + Blah.find("key7") + "\n"
-      + "Some key Json        : " + Json.toJson(Blah.find("key7")) + "\n"
-      + "Nonexistent key Anorm: " + Blah.find("key9") + "\n"
-      + "Nonexistent key Json : " + Json.toJson(Blah.find("key9")) + "\n"
+      + "\n# Find a specific key ("+key+"):\n"
+      + "Some key Anorm       : " + Blah.find(key) + "\n"
+      + "Some key Json        : " + Json.toJson(Blah.find(key)) + "\n"
+      + "Nonexistent key Anorm: " + Blah.find("XXX") + "\n"
+      + "Nonexistent key Json : " + Json.toJson(Blah.find("XXX")) + "\n"
+
+      + "\n#Update a specific key ("+key+"):\n"
+      + "Before  : " + Blah.find(key) + "\n"
+      + "Updating: " + Blah.update(Blah(key,"valnew","descnew")) + "\n"
+      + "After   : " + Blah.find(key) + "\n"
     )
   }
 
