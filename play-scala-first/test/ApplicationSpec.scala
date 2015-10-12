@@ -40,11 +40,22 @@ class ApplicationSpec extends Specification {
       contentAsString(newdiv) must contain ("specificmessage")
     }
 
-    "output test database value using REST" in new WithApplication {
+    "show all database values using REST" in new WithApplication {
       val dbpage = route(FakeRequest(GET,"/db")).get
       status(dbpage) must equalTo(OK)
       contentType(dbpage) must beSome.which(_ == "text/plain")
-      contentAsString(dbpage) must contain ("DB IS ALIVE")
+      contentAsString(dbpage) must contain ("Blah(key1,val1)")
+      contentAsString(dbpage) must contain ("Blah(key2,val2)")
+      contentAsString(dbpage) must contain ("Blah(key3,val3)")
+    }
+
+    "select a specific key using REST" in new WithApplication {
+      val dbpage = route(FakeRequest(GET,"/db")).get
+      status(dbpage) must equalTo(OK)
+      contentType(dbpage) must beSome.which(_ == "text/plain")
+      contentAsString(dbpage) must contain ("List(Blah(key7,val7))")
+      contentAsString(dbpage) must not contain ("List(Blah(key7,val8))")
+      contentAsString(dbpage) must contain ("""[{"key":"key7","value":"val7"}]""")
     }
   }
 }
