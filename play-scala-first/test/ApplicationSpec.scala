@@ -44,18 +44,18 @@ class ApplicationSpec extends Specification {
       val dbpage = route(FakeRequest(GET,"/db")).get
       status(dbpage) must equalTo(OK)
       contentType(dbpage) must beSome.which(_ == "text/plain")
-      contentAsString(dbpage) must contain ("Blah(key1,val1)")
-      contentAsString(dbpage) must contain ("Blah(key2,val2)")
-      contentAsString(dbpage) must contain ("Blah(key3,val3)")
+      contentAsString(dbpage) must contain ("Blah(key1,val1,desc1)")
+      contentAsString(dbpage) must contain ("Blah(key2,val2,desc2)")
+      contentAsString(dbpage) must contain ("Blah(key3,val3,desc3)")
     }
 
     "select a specific key using REST" in new WithApplication {
       val dbpage = route(FakeRequest(GET,"/db")).get
       status(dbpage) must equalTo(OK)
       contentType(dbpage) must beSome.which(_ == "text/plain")
-      contentAsString(dbpage) must contain ("List(Blah(key7,val7))")
-      contentAsString(dbpage) must not contain ("List(Blah(key7,val8))")
-      contentAsString(dbpage) must contain ("""[{"key":"key7","value":"val7"}]""")
+      contentAsString(dbpage) must contain ("List(Blah(key7,val7,desc7))")
+      contentAsString(dbpage) must not contain ("List(Blah(key7,val8,desc8))")
+      contentAsString(dbpage) must contain ("""[{"key":"key7","value":"val7","desc":"desc7"}]""")
     }
   }
 }

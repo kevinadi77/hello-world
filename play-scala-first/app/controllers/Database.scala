@@ -21,7 +21,7 @@ https://github.com/dustingetz/orm-deep-dive/blob/master/app/models/Environment.s
 */
 
 
-case class Blah(key:String, value:String)
+case class Blah(key:String, value:String, desc:String)
 
 object Blah {
 
@@ -30,8 +30,9 @@ object Blah {
   */
   private val simple = {
     SqlParser.get[String]("KEY") ~
-    SqlParser.get[String]("VALUE") map {
-      case key ~ value => Blah(key,value)
+    SqlParser.get[String]("VALUE") ~
+    SqlParser.get[String]("DESC") map {
+      case key ~ value ~ desc => Blah(key,value,desc)
     }
   }
 
@@ -42,7 +43,9 @@ object Blah {
     DB.withConnection { implicit conn =>
       SQL(
         """
-        SELECT * FROM TEST
+        SELECT TEST.KEY,TEST.VALUE,DESC.DESC
+        FROM TEST
+        JOIN DESC ON DESC.KEY = TEST.KEY
         """
       ).as(Blah.simple *)
     }
@@ -55,7 +58,10 @@ object Blah {
     DB.withConnection { implicit conn =>
       SQL(
         """
-        SELECT * FROM TEST WHERE KEY = {key}
+        SELECT TEST.KEY,TEST.VALUE,DESC.DESC
+        FROM TEST
+        JOIN DESC ON DESC.KEY = TEST.KEY
+        WHERE TEST.KEY = {key}
         """
       ).on('key -> key).as(Blah.simple *)
     }
@@ -66,11 +72,19 @@ object Blah {
   */
   def create(blah: Blah): Unit = {
     DB.withTransaction { implicit conn =>
+
       SQL(
         """
         INSERT INTO TEST (KEY,VALUE) VALUES ({key},{value})
         """
       ).on('key -> blah.key, 'value -> blah.value)
+       .executeUpdate()
+
+      SQL(
+        """
+        INSERT INTO DESC (KEY,DESC) VALUES ({key},{desc})
+        """
+      ).on('key -> blah.key, 'desc -> blah.desc)
        .executeUpdate()
     }
   }
@@ -83,7 +97,8 @@ object Blah {
   implicit val blahWrites = new Writes[Blah] {
     def writes(blah: Blah) = Json.obj(
       "key" -> blah.key,
-      "value" -> blah.value
+      "value" -> blah.value,
+      "desc" -> blah.desc
     )
   }
 
@@ -99,7 +114,8 @@ object Blah {
   */
   implicit val blahReads: Reads[Blah] = (
     (JsPath \ "key").read[String] and
-    (JsPath \ "value").read[String]
+    (JsPath \ "value").read[String] and
+    (JsPath \ "desc").read[String]
   )(Blah.apply _)
 
 }
@@ -115,17 +131,19 @@ class Database extends Controller {
     val createTable = SQL(
       """
       DROP TABLE IF EXISTS TEST;
-      CREATE TABLE TEST (KEY TEXT, VALUE TEXT)
+      CREATE TABLE TEST (KEY TEXT, VALUE TEXT);
+      DROP TABLE IF EXISTS DESC;
+      CREATE TABLE DESC (KEY TEXT, DESC TEXT);
       """
     ).execute()
   }
-  Blah.create(Blah("key1","val1"))
-  Blah.create(Blah("key2","val2"))
-  Blah.create(Blah("key3","val3"))
-  Blah.create(Blah("key4","val4"))
-  Blah.create(Blah("key5","val5"))
-  Blah.create(Blah("key6","val6"))
-  Blah.create(Blah("key7","val7"))
+  Blah.create(Blah("key1","val1","desc1"))
+  Blah.create(Blah("key2","val2","desc2"))
+  Blah.create(Blah("key3","val3","desc3"))
+  Blah.create(Blah("key4","val4","desc4"))
+  Blah.create(Blah("key5","val5","desc5"))
+  Blah.create(Blah("key6","val6","desc6"))
+  Blah.create(Blah("key7","val7","desc7"))
 
   /*
   Check: Jdbc functionality
@@ -171,7 +189,18 @@ class Database extends Controller {
     val allBlahJson = Json.toJson(allBlah)
 
     val corruptJson = Json.parse("""
-    [{"key":"keyX","val":"valX"},{"key":"keyY","value":"valY"},{"key":"keyZ","value":"valZ"}]
+    [ {
+        "key" : "keyX",
+        "value" : "valX"
+      }, {
+        "key" : "keyY",
+        "value" : "valY",
+        "desc" : "descY"
+      }, {
+        "key" : "keyZ",
+        "value" : "valZ",
+        "desc" : "descZ"
+      } ]
     """)
 
     Ok(
