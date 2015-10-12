@@ -148,18 +148,32 @@ class Database extends Controller {
   def indexAnorm = Action {
     val allBlah = Blah.findAll()
     val allBlahJson = Json.toJson(allBlah)
+
+    val corruptJson = Json.parse("""
+    [{"key":"keyX","val":"valX"},{"key":"keyY","value":"valY"},{"key":"keyZ","value":"valZ"}]
+    """)
+
     Ok(
-        "# Anorm SELECT * result as Blah case class:\n"
-      + allBlah.mkString("\n") + "\n\n"
+        "\n# Anorm SELECT * result as Blah case class:\n"
+      + allBlah.mkString("\n") + "\n"
 
-      + "# List head as Json:\n"
-      + Json.toJson(allBlah.head) + "\n\n"
+      + "\n# List head as Json:\n"
+      + Json.toJson(allBlah.head) + "\n"
 
-      + "# SELECT * result as Json:\n"
-      + Json.prettyPrint(allBlahJson) + "\n\n"
+      + "\n# SELECT * result as Json:\n"
+      + Json.prettyPrint(allBlahJson) + "\n"
 
-      + "# From Json back into Seq[Blah]:\n"
-      + allBlahJson.asOpt[Seq[Blah]]
+      + "\n# From Json back into Seq[Blah]:\n"
+      + allBlahJson.asOpt[Seq[Blah]] + "\n"
+
+      + "\n# Corrupt Json:\n"
+      + "Json      : " + corruptJson + "\n"
+      + "All valid : " + corruptJson.validate[List[Blah]] + "\n"
+      + "Head valid: " + corruptJson.head.validate[Blah] + "\n"
+      + "Tail valid: " + corruptJson.tail.validate[List[Blah]] + "\n"
+      + "All option: " + corruptJson.asOpt[List[Blah]] + "\n"
+      + "Head opt  : " + corruptJson.head.asOpt[Blah] + "\n"
+      + "Tail opt  : " + corruptJson.tail.asOpt[List[Blah]] + "\n"
     )
   }
 
