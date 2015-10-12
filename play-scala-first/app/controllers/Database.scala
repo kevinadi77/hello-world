@@ -12,6 +12,14 @@ import anorm._
 // import anorm.SqlParser._ /* commented to make the parser .get method explicit */
 
 
+/*
+Doc:
+https://www.playframework.com/documentation/2.4.x/ScalaAnorm
+
+Examples:
+https://github.com/dustingetz/orm-deep-dive/blob/master/app/models/Environment.scala
+*/
+
 
 case class Blah(key:String, value:String)
 
@@ -20,7 +28,7 @@ object Blah {
   /*
   Parse SQL query output into structure Blah
   */
-  private val parse = {
+  private val simple = {
     SqlParser.get[String]("KEY") ~
     SqlParser.get[String]("VALUE") map {
       case key ~ value => Blah(key,value)
@@ -36,7 +44,20 @@ object Blah {
         """
         SELECT * FROM TEST
         """
-      ).as(Blah.parse *)
+      ).as(Blah.simple *)
+    }
+  }
+
+  /*
+  Get some Blah with a specific key
+  */
+  def find(key:String): Seq[Blah] = {
+    DB.withConnection { implicit conn =>
+      SQL(
+        """
+        SELECT * FROM TEST WHERE KEY = {key}
+        """
+      ).on('key -> key).as(Blah.simple *)
     }
   }
 
@@ -44,7 +65,7 @@ object Blah {
   Insert a new Blah into the database
   */
   def create(blah: Blah): Unit = {
-    DB.withConnection { implicit conn =>
+    DB.withTransaction { implicit conn =>
       SQL(
         """
         INSERT INTO TEST (KEY,VALUE) VALUES ({key},{value})
@@ -155,10 +176,10 @@ class Database extends Controller {
 
     Ok(
         "\n# Anorm SELECT * result as Blah case class:\n"
-      + allBlah.mkString("\n") + "\n"
+      + Blah.findAll.mkString("\n") + "\n"
 
       + "\n# List head as Json:\n"
-      + Json.toJson(allBlah.head) + "\n"
+      + Json.toJson(Blah.findAll.head) + "\n"
 
       + "\n# SELECT * result as Json:\n"
       + Json.prettyPrint(allBlahJson) + "\n"
@@ -174,6 +195,12 @@ class Database extends Controller {
       + "All option: " + corruptJson.asOpt[List[Blah]] + "\n"
       + "Head opt  : " + corruptJson.head.asOpt[Blah] + "\n"
       + "Tail opt  : " + corruptJson.tail.asOpt[List[Blah]] + "\n"
+
+      + "\n# Find a specific key:\n"
+      + "Some key Anorm       : " + Blah.find("key7") + "\n"
+      + "Some key Json        : " + Json.toJson(Blah.find("key7")) + "\n"
+      + "Nonexistent key Anorm: " + Blah.find("key9") + "\n"
+      + "Nonexistent key Json : " + Json.toJson(Blah.find("key9")) + "\n"
     )
   }
 
