@@ -46,6 +46,7 @@ object Blah {
         SELECT TEST.KEY,TEST.VALUE,DESC.DESC
         FROM TEST
         JOIN DESC ON DESC.KEY = TEST.KEY
+        ORDER BY TEST.KEY
         """
       ).as(Blah.simple *)
     }
@@ -85,6 +86,28 @@ object Blah {
         INSERT INTO DESC (KEY,DESC) VALUES ({key},{desc})
         """
       ).on('key -> blah.key, 'desc -> blah.desc)
+       .executeUpdate()
+    }
+  }
+
+  /*
+  Insert a new Blah using REST
+  */
+  def create(key: String, value: String, desc: String): Unit = {
+    DB.withTransaction { implicit conn =>
+
+      SQL(
+        """
+        INSERT INTO TEST (KEY,VALUE) VALUES ({key},{value})
+        """
+      ).on('key -> key, 'value -> value)
+       .executeUpdate()
+
+      SQL(
+        """
+        INSERT INTO DESC (KEY,DESC) VALUES ({key},{desc})
+        """
+      ).on('key -> key, 'desc -> desc)
        .executeUpdate()
     }
   }
@@ -259,6 +282,25 @@ class Database extends Controller {
       + "Updating: " + Blah.update(Blah(key,"valnew","descnew")) + "\n"
       + "After   : " + Blah.find(key) + "\n"
     )
+  }
+
+  /*
+  REST insert
+  */
+  def insertREST(key: String, value: String, desc: String) = Action {
+    val data = Blah(key,value,desc)
+    Blah.create(data)
+    Ok("Inserted " + data)
+  }
+
+  /*
+  REST update
+  */
+  def updateREST(key: String, value: String, desc: String) = Action {
+    val olddata = Blah.find(key)
+    val newdata = Blah(key,value,desc)
+    Blah.update(newdata)
+    Ok("Key: " + key + "  Old: " + olddata + "  New: " + newdata)
   }
 
   /*
