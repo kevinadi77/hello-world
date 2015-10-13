@@ -91,28 +91,6 @@ object Blah {
   }
 
   /*
-  Insert a new Blah using REST
-  */
-  def create(key: String, value: String, desc: String): Unit = {
-    DB.withTransaction { implicit conn =>
-
-      SQL(
-        """
-        INSERT INTO TEST (KEY,VALUE) VALUES ({key},{value})
-        """
-      ).on('key -> key, 'value -> value)
-       .executeUpdate()
-
-      SQL(
-        """
-        INSERT INTO DESC (KEY,DESC) VALUES ({key},{desc})
-        """
-      ).on('key -> key, 'desc -> desc)
-       .executeUpdate()
-    }
-  }
-
-  /*
   Update existing Blah
   */
   def update(blah: Blah): Unit = {
