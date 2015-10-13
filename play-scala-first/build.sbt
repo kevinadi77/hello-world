@@ -12,7 +12,8 @@ libraryDependencies ++= Seq(
   ws,
   specs2 % Test,
   "org.xerial" % "sqlite-jdbc" % "3.8.0-SNAPSHOT",
-  "com.typesafe.play" %% "anorm" % "2.4.0"
+  "com.typesafe.play" %% "anorm" % "2.4.0",
+  "org.postgresql" % "postgresql" % "9.4-1204-jdbc42"
 )
 
 resolvers += "scalaz-bintray" at "http://dl.bintray.com/scalaz/releases"

@@ -31,7 +31,7 @@ object Blah {
   private val simple = {
     SqlParser.get[String]("KEY") ~
     SqlParser.get[String]("VALUE") ~
-    SqlParser.get[String]("DESC") map {
+    SqlParser.get[String]("DESCRIPTION") map {
       case key ~ value ~ desc => Blah(key,value,desc)
     }
   }
@@ -43,9 +43,9 @@ object Blah {
     DB.withConnection { implicit conn =>
       SQL(
         """
-        SELECT TEST.KEY,TEST.VALUE,DESC.DESC
+        SELECT TEST.KEY,TEST.VALUE,DESCRIPTION.DESCRIPTION
         FROM TEST
-        JOIN DESC ON DESC.KEY = TEST.KEY
+        JOIN DESCRIPTION ON DESCRIPTION.KEY = TEST.KEY
         ORDER BY TEST.KEY
         """
       ).as(Blah.simple *)
@@ -59,9 +59,9 @@ object Blah {
     DB.withConnection { implicit conn =>
       SQL(
         """
-        SELECT TEST.KEY,TEST.VALUE,DESC.DESC
+        SELECT TEST.KEY,TEST.VALUE,DESCRIPTION.DESCRIPTION
         FROM TEST
-        JOIN DESC ON DESC.KEY = TEST.KEY
+        JOIN DESCRIPTION ON DESCRIPTION.KEY = TEST.KEY
         WHERE TEST.KEY = {key}
         """
       ).on('key -> key).as(Blah.simple *)
@@ -83,7 +83,7 @@ object Blah {
 
       SQL(
         """
-        INSERT INTO DESC (KEY,DESC) VALUES ({key},{desc})
+        INSERT INTO DESCRIPTION (KEY,DESCRIPTION) VALUES ({key},{desc})
         """
       ).on('key -> blah.key, 'desc -> blah.desc)
        .executeUpdate()
@@ -105,7 +105,7 @@ object Blah {
 
       SQL(
         """
-        UPDATE DESC SET DESC = {desc} WHERE KEY = {key}
+        UPDATE DESCRIPTION SET DESCRIPTION = {desc} WHERE KEY = {key}
         """
       ).on('key -> blah.key, 'desc -> blah.desc)
        .executeUpdate()
@@ -151,12 +151,12 @@ class Database extends Controller {
   Constructor, create table & insert some values
   */
   DB.withConnection { implicit conn =>
-    val createTable = SQL(
+    val dropTableTest = SQL(
       """
       DROP TABLE IF EXISTS TEST;
       CREATE TABLE TEST (KEY TEXT, VALUE TEXT);
-      DROP TABLE IF EXISTS DESC;
-      CREATE TABLE DESC (KEY TEXT, DESC TEXT);
+      DROP TABLE IF EXISTS DESCRIPTION;
+      CREATE TABLE DESCRIPTION (KEY TEXT, DESCRIPTION TEXT);
       """
     ).execute()
   }
@@ -279,6 +279,13 @@ class Database extends Controller {
     val newdata = Blah(key,value,desc)
     Blah.update(newdata)
     Ok("Key: " + key + "  Old: " + olddata + "  New: " + newdata)
+  }
+
+  /*
+  REST GET with json
+  */
+  def selectRESTjson = Action {
+    Ok(Json.prettyPrint(Json.toJson(Blah.findAll)))
   }
 
   /*

@@ -12,6 +12,7 @@ GET     /db                         controllers.Database.indexAnorm(key: String 
 POST    /db                         controllers.Database.insertREST(key: String, value: String, desc: String)
 PUT     /db                         controllers.Database.updateREST(key: String, value: String, desc: String)
 
+GET	  	/db/json 					controllers.Database.selectRESTjson
 POST    /db/json                    controllers.Database.insertRESTjson
 
 # Map static resources from the /public folder to the /assets URL path
