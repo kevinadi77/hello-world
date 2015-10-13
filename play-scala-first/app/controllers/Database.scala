@@ -282,6 +282,13 @@ class Database extends Controller {
   }
 
   /*
+  REST POST with json
+  */
+  def insertRESTjson = Action(parse.json) { req =>
+    Ok(Json.prettyPrint(req.body))
+  }
+
+  /*
   Not needed anymore, can use Blah.create() instead
   */
   def insert(key:String, value:String) = {
