@@ -11,6 +11,8 @@ import play.api.libs.functional.syntax._
 import anorm._
 // import anorm.SqlParser._ /* commented to make the parser .get method explicit */
 
+import scala.concurrent._
+
 
 /*
 Doc:
@@ -260,6 +262,29 @@ class Database extends Controller {
       + "Updating: " + Blah.update(Blah(key,"valnew","descnew")) + "\n"
       + "After   : " + Blah.find(key) + "\n"
     )
+  }
+
+  /*
+  Multiple body parser
+    json: curl -X POST -H "Content-type: application/json" -d "{\"key\":\"1\",\"value\":\"2\",\"desc\":\"3\"}" http://localhost:9000/testAction
+    url : curl -X POST -d "key=1&value=2&desc=3" http://localhost:9000/testAction
+  */
+  val xmlOrJson = parse.using {
+  request =>
+    request.contentType.map(_.toLowerCase) match {
+      case Some("application/json") | Some("text/json") => parse.json
+      case Some("application/x-www-form-urlencoded") => parse.urlFormEncoded
+      case x => {
+        System.out.println(x)
+        play.api.mvc.BodyParsers.parse.error(Future.successful(UnsupportedMediaType("Invalid content type specified")))
+      }
+    }
+  }
+  def testAction = Action(xmlOrJson) { request =>
+    request.body match {
+      case json: JsObject => Ok(Json.prettyPrint(json)) //echo back posted json
+      case x => Ok(x.toString)
+    }
   }
 
   /*
