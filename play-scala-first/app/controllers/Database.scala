@@ -11,6 +11,8 @@ import play.api.libs.functional.syntax._
 import anorm._
 // import anorm.SqlParser._ /* commented to make the parser .get method explicit */
 
+import scala.concurrent._
+
 
 /*
 Doc:
@@ -36,6 +38,7 @@ object Blah {
     }
   }
 
+
   /*
   Get all Blah from the database, returns Blah array
   */
@@ -52,6 +55,7 @@ object Blah {
     }
   }
 
+
   /*
   Get some Blah with a specific key
   */
@@ -67,6 +71,7 @@ object Blah {
       ).on('key -> key).as(Blah.simple *)
     }
   }
+
 
   /*
   Insert a new Blah into the database
@@ -90,6 +95,7 @@ object Blah {
     }
   }
 
+
   /*
   Update existing Blah
   */
@@ -112,6 +118,7 @@ object Blah {
     }
   }
 
+
   /*
   Implicit to change Blah into Json
   Usage: Json.toJson(blah) -> returns JsValue
@@ -124,6 +131,7 @@ object Blah {
       "desc" -> blah.desc
     )
   }
+
 
   /*
   Implicit to change Json to Blah
@@ -168,6 +176,7 @@ class Database extends Controller {
   Blah.create(Blah("key6","val6","desc6"))
   Blah.create(Blah("key7","val7","desc7"))
 
+
   /*
   Check: Jdbc functionality
   */
@@ -186,6 +195,7 @@ class Database extends Controller {
     Ok(outstring)
   }
 
+
   /*
   Check: Jdbc query method
   */
@@ -203,6 +213,7 @@ class Database extends Controller {
       Ok(outstream.mkString("\n"))
     }
   }
+
 
   /*
   Using Anorm
@@ -262,6 +273,31 @@ class Database extends Controller {
     )
   }
 
+
+  /*
+  Multiple body parser
+    json: curl -X POST -H "Content-type: application/json" -d "{\"key\":\"1\",\"value\":\"2\",\"desc\":\"3\"}" http://localhost:9000/testAction
+    url : curl -X POST -d "key=1&value=2&desc=3" http://localhost:9000/testAction
+  */
+  val xmlOrJson = parse.using {
+  request =>
+    request.contentType.map(_.toLowerCase) match {
+      case Some("application/json") | Some("text/json") => parse.json
+      case Some("application/x-www-form-urlencoded") => parse.urlFormEncoded
+      case x => {
+        System.out.println(x)
+        play.api.mvc.BodyParsers.parse.error(Future.successful(UnsupportedMediaType("Invalid content type specified")))
+      }
+    }
+  }
+  def testAction = Action(xmlOrJson) { request =>
+    request.body match {
+      case json: JsObject => Ok(Json.prettyPrint(json)) //echo back posted json
+      case x => Ok(x.toString)
+    }
+  }
+
+
   /*
   REST insert
   */
@@ -270,6 +306,7 @@ class Database extends Controller {
     Blah.create(data)
     Ok("Inserted " + data)
   }
+
 
   /*
   REST update
@@ -281,6 +318,7 @@ class Database extends Controller {
     Ok("Key: " + key + "  Old: " + olddata + "  New: " + newdata)
   }
 
+
   /*
   REST GET with json
     curl http://localhost:9000/db/json
@@ -289,15 +327,25 @@ class Database extends Controller {
     Ok(Json.prettyPrint(Json.toJson(Blah.findAll)))
   }
 
+
   /*
-  REST POST with json
+  REST POST with json -- insert
     curl -X POST -H "Content-type: application/json" -d "{\"key\":\"key100\",\"value\":\"val100\",\"desc\":\"desc100\"}" http://localhost:9000/db/json
   */
   def insertRESTjson = Action(parse.json) { req =>
     val result = req.body.validate[Blah] match {
       case JsSuccess(x,_) => {
-        Blah.create(req.body.as[Blah])
-        "Success"
+        val newdata = req.body.as[Blah]
+        Blah.find(newdata.key) match {
+          case List(x) => {
+            Blah.update(newdata)
+            "Update success"
+          }
+          case _ => {
+            Blah.create(newdata)
+            "Create success"
+          }
+        }
       }
       case JsError(x) => {
         "Validation error: " + x.head._1
@@ -309,6 +357,7 @@ class Database extends Controller {
     val response = Json.obj("input" -> req.body, "result" -> result)
     Ok(Json.prettyPrint(response))
   }
+
 
   /*
   Not needed anymore, can use Blah.create() instead
@@ -322,6 +371,7 @@ class Database extends Controller {
       ).on('key -> key, 'val -> value).executeUpdate()
     }
   }
+
 
   /*
   Check SQL feature with recursive CTE
