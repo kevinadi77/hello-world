@@ -329,14 +329,23 @@ class Database extends Controller {
 
 
   /*
-  REST POST with json
+  REST POST with json -- insert
     curl -X POST -H "Content-type: application/json" -d "{\"key\":\"key100\",\"value\":\"val100\",\"desc\":\"desc100\"}" http://localhost:9000/db/json
   */
   def insertRESTjson = Action(parse.json) { req =>
     val result = req.body.validate[Blah] match {
       case JsSuccess(x,_) => {
-        Blah.create(req.body.as[Blah])
-        "Success"
+        val newdata = req.body.as[Blah]
+        Blah.find(newdata.key) match {
+          case List(x) => {
+            Blah.update(newdata)
+            "Update success"
+          }
+          case _ => {
+            Blah.create(newdata)
+            "Create success"
+          }
+        }
       }
       case JsError(x) => {
         "Validation error: " + x.head._1
