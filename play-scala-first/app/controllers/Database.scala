@@ -38,6 +38,7 @@ object Blah {
     }
   }
 
+
   /*
   Get all Blah from the database, returns Blah array
   */
@@ -54,6 +55,7 @@ object Blah {
     }
   }
 
+
   /*
   Get some Blah with a specific key
   */
@@ -69,6 +71,7 @@ object Blah {
       ).on('key -> key).as(Blah.simple *)
     }
   }
+
 
   /*
   Insert a new Blah into the database
@@ -92,6 +95,7 @@ object Blah {
     }
   }
 
+
   /*
   Update existing Blah
   */
@@ -114,6 +118,7 @@ object Blah {
     }
   }
 
+
   /*
   Implicit to change Blah into Json
   Usage: Json.toJson(blah) -> returns JsValue
@@ -126,6 +131,7 @@ object Blah {
       "desc" -> blah.desc
     )
   }
+
 
   /*
   Implicit to change Json to Blah
@@ -170,6 +176,7 @@ class Database extends Controller {
   Blah.create(Blah("key6","val6","desc6"))
   Blah.create(Blah("key7","val7","desc7"))
 
+
   /*
   Check: Jdbc functionality
   */
@@ -188,6 +195,7 @@ class Database extends Controller {
     Ok(outstring)
   }
 
+
   /*
   Check: Jdbc query method
   */
@@ -205,6 +213,7 @@ class Database extends Controller {
       Ok(outstream.mkString("\n"))
     }
   }
+
 
   /*
   Using Anorm
@@ -264,6 +273,7 @@ class Database extends Controller {
     )
   }
 
+
   /*
   Multiple body parser
     json: curl -X POST -H "Content-type: application/json" -d "{\"key\":\"1\",\"value\":\"2\",\"desc\":\"3\"}" http://localhost:9000/testAction
@@ -287,6 +297,7 @@ class Database extends Controller {
     }
   }
 
+
   /*
   REST insert
   */
@@ -295,6 +306,7 @@ class Database extends Controller {
     Blah.create(data)
     Ok("Inserted " + data)
   }
+
 
   /*
   REST update
@@ -306,6 +318,7 @@ class Database extends Controller {
     Ok("Key: " + key + "  Old: " + olddata + "  New: " + newdata)
   }
 
+
   /*
   REST GET with json
     curl http://localhost:9000/db/json
@@ -313,6 +326,7 @@ class Database extends Controller {
   def selectRESTjson = Action {
     Ok(Json.prettyPrint(Json.toJson(Blah.findAll)))
   }
+
 
   /*
   REST POST with json
@@ -335,6 +349,7 @@ class Database extends Controller {
     Ok(Json.prettyPrint(response))
   }
 
+
   /*
   Not needed anymore, can use Blah.create() instead
   */
@@ -347,6 +362,7 @@ class Database extends Controller {
       ).on('key -> key, 'val -> value).executeUpdate()
     }
   }
+
 
   /*
   Check SQL feature with recursive CTE
