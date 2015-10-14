@@ -283,6 +283,7 @@ class Database extends Controller {
 
   /*
   REST GET with json
+    curl http://localhost:9000/db/json
   */
   def selectRESTjson = Action {
     Ok(Json.prettyPrint(Json.toJson(Blah.findAll)))
@@ -290,9 +291,23 @@ class Database extends Controller {
 
   /*
   REST POST with json
+    curl -X POST -H "Content-type: application/json" -d "{\"key\":\"key100\",\"value\":\"val100\",\"desc\":\"desc100\"}" http://localhost:9000/db/json
   */
   def insertRESTjson = Action(parse.json) { req =>
-    Ok(Json.prettyPrint(req.body))
+    val result = req.body.validate[Blah] match {
+      case JsSuccess(x,_) => {
+        Blah.create(req.body.as[Blah])
+        "Success"
+      }
+      case JsError(x) => {
+        "Validation error: " + x.head._1
+      }
+      case _ => {
+        "Unknown error"
+      }
+    }
+    val response = Json.obj("input" -> req.body, "result" -> result)
+    Ok(Json.prettyPrint(response))
   }
 
   /*
